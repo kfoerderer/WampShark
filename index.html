@@ -10,7 +10,7 @@
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="/">WampShark - Crossbar Dashboard</a>
+                <a class="navbar-brand" href="/">WampShark Ext - Crossbar Dashboard</a>
             </div>
         
             <div class="collapse navbar-collapse">
@@ -105,11 +105,34 @@
                         </tr>
                     </thead>
                 </table>
+                <!-- @foerderer -->
                 <div class="box-rpc-list" id="box-rpc-list">
 	                <table class="table table-condensed">
+                        <!-- header needed for "stupidtable". Make it invisible though.-->
+                        <thead style="display:none">
+                        <tr>
+                            <th id="rpc-col-uri" data-sort="string"></th>
+                            <th id="rpc-col-created" data-sort="string"></th>
+                            <th id="rpc-col-callees" data-sort="string"></th>
+                            <th id="rpc-col-action" data-sort="string"></th>
+                        </tr>
+                        </thead>
 	                    <tbody id="rpc-list"></tbody>
 	                </table>
                 </div>
+
+                <div class="well rpc-data-details">
+                    <div class="topic-info" id="rpc-info">
+                        
+                    </div>
+                    <div class="json-data-col">
+                        <pre id="json-rpc-data" class="json-rpc-data">
+                            
+                        </pre>
+                    </div>
+                </div>
+            <!-- /@foerderer -->
+
             </div>
             
             <div role="tabpanel" class="tab-pane width-full" id="pubsub">
@@ -140,11 +163,24 @@
                         </thead>
                     </table>
                     
+                    <!-- @foerderer -->
+
                     <div class="box-topic-list" id="box-topic-list">
                         <table class="table table-condensed">
+                            <!-- header needed for "stupidtable". Make it invisible though.-->
+                            <thead style="display:none">
+                            <tr>
+                                <th id="topic-col-uri" data-sort="string"></th>
+                                <th id="topic-col-created" data-sort="string"></th>
+                                <th id="topic-col-subscribers" data-sort="string"></th>
+                                <th id="topic-col-action" data-sort="string"></th>
+                            </tr>
+                            </thead>
                             <tbody id="topic-list"></tbody>
                         </table>
                     </div>
+
+                    <!-- /@foerderer -->
                 </div>
                 <div class="table-topic-flow">
                     <table class="table table-condensed table-head">
@@ -335,7 +371,7 @@
 
     </script>
 
-    <script src="js/fonctions.js"></script>
+    <script src="js/functions.js"></script>
     <script src="js/autobahn.js"></script>
     <script src="js/sessions.js"></script>
     <script src="js/connect.js"></script>
@@ -345,5 +381,6 @@
     <script src="js/rpc.js"></script>
     <script src="js/design.js"></script>
     <script src="js/login.js"></script>
+    <script src="js/libs/stupidtable.js"></script>
 </body>
 </html>

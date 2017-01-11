@@ -21,6 +21,16 @@ function addTopic() {
 		var sub = new Subscribe(topic);
 
     	setTimeout(addPtrToList, 500, topic, sub);
+
+        // @foerderer
+
+        // check checkbox after subscription
+        setTimeout(function() {
+            let row = $('tr[data-topic="' + topic +'"]');
+            $("#check-sub-" + row.attr('id')).prop("checked", true);
+        }, 500, topic, sub);
+
+        // /@foerderer
 	}
 	
     $('#addTopic').modal('hide')
@@ -61,7 +71,18 @@ function pubTopicExec() {
         var value = $('#pub-arg'+i).val();
 
         if (value != "") {
-            args.push(value);
+            // @foerderer
+
+            // Parse it if possible. If not assume its a string.
+            try {
+                let obj = JSON.parse(value);
+                args.push(obj);
+            } catch(e) {
+                args.push(value);
+            }
+
+            // args.push(value);
+            // /@foerderer
         }
     }
 
@@ -77,11 +98,6 @@ function stopListener(topic) {
     wsSub.unsubscribe(subList[topic]);
     delete subList[topic];
 }
-
-
-
-
-
 
 function onCreate(args) {
     var details = args[1];
@@ -129,7 +145,8 @@ function onUnsubscribe(args) {
 }
 
 function newTopic(details) {
-    var html = '<tr id="'+details.id+'"><td class="topic-col-sub"><input type="checkbox" id="check-sub-'+details.id+'" onchange="changeTopicSub(\''+details.uri+'\', \''+details.id+'\')"></td><td>'+details.uri+'</td>';
+    var html = '<tr id="'+details.id+'" data-topic="' + details.uri + '"><td class="topic-col-sub"><input type="checkbox" id="check-sub-'+details.id+'" onchange="changeTopicSub(\''+details.uri+'\', \''+details.id+'\')"></td>';
+    html += '<td>'+details.uri+'</td>';
     html += '<td class="topic-col-created">'+details.created+'</td>';
     html += '<td class="topic-col-subscribers"><span id="subscribers-list-'+details.id+'" class="sessions-details" onclick="getSessionsDetails(\''+details.uri+'\', \''+details.id+'\', \'sub\');">' + 
     			details.subscribers.length+'</span></td>';
@@ -138,7 +155,13 @@ function newTopic(details) {
 
     $('#topic-list').append(html);
 
-    //subscribeTopic(details.uri)
+    // @foerderer
+
+    // sort table using "stupidtable"
+    let table = $('#topic-list').parent('table').stupidtable();
+    $('#topic-col-uri').stupidsort('asc');
+
+    // /@foerderer
 }
 
 function getAllSubscription() {

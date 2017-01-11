@@ -1,3 +1,8 @@
+
+table tr:nth-child(even) {
+    background-color: #2a9fd6;
+}
+
 .modal-fixed {
     bottom: auto;
     display: block;
@@ -95,7 +100,7 @@
 .sessions {
     position: absolute;
     top: 65px;
-    background-color: #add8e6;
+    background-color: #2a9fd6;
     padding: 10px;
     display: inline-block;
     overflow: hidden;
@@ -104,7 +109,7 @@
 .pubsub {
     position: absolute;
     top: 65px;
-    background-color: #65b6e6;
+    background-color: #2a9fd6;
     padding: 10px;
     display: inline-block;
     overflow: hidden;
@@ -118,7 +123,7 @@
     position: absolute;
     top: 65px;
     right: 8px;
-    background-color: #5bc6e6;
+    background-color: #2a9fd6;
     padding: 10px;
     display: inline-block;
     overflow: hidden;
@@ -211,7 +216,7 @@
     display: inline-block;
     width: 250px;
     height: 175px;
-    background-color: #65b6e6;
+    background-color: #2a9fd6;
     padding: 8px;
     margin-right: 10px;
     margin-bottom: 10px;
@@ -275,9 +280,14 @@
     height: 100% !important;
 }
 
-
 .json-data {
     height: 160px !important;
+    width: 100%;
+    overflow: auto !important;
+} 
+
+.json-rpc-data {
+    height: 325px !important;
     width: 100%;
     overflow: auto !important;
 } 
@@ -301,6 +311,16 @@
     width: 100%;
     bottom: 0px;
     margin-bottom: 0px;
+    color: #ffffff;
+}
+
+.rpc-data-details {
+    position: absolute;
+    height: 360px;
+    width: 100%;
+    bottom: 0px;
+    margin-bottom: 0px;
+    color: #ffffff;
 }
 
 .table-topic-flow {
@@ -308,7 +328,7 @@
 }
 
 .add-topic > a, .add-topic > a:hover {
-    color: #000;
+    color: #ffffff;
 }
 
 .input-group {
@@ -353,8 +373,6 @@ th.flow-col-data {
     width: 90px;
 }
 
-
-
 .session-col-id {
    width: 150px; 
 }
@@ -385,7 +403,7 @@ th.flow-col-data {
 
 .sessions-details {
 	cursor: pointer;
-	color: #337ab7;
+	color: #9933cc;
 }
 
 

@@ -14,14 +14,34 @@ function rpcCall() {
         var value = $('#rpc-arg'+i).val();
 
         if (value != "") {
-            args.push(value);
+            // @foerderer
+
+            // Parse it if possible. If not assume its a string.
+            try {
+                let obj = JSON.parse(value);
+                args.push(obj);
+            } catch(e) {
+                args.push(value);
+            }
+
+            // /@foerderer
         }
     }
 
     wsPub.call(_callURI, args).then(
         function (result) {
             $('#callRPC').modal('hide');
-            alert('Call result : '+result);
+            // @foerderer
+
+            let argsString = JSON.stringify(args);
+            argsString = argsString.substring(1, argsString.length -1);
+            // set call & parameter details
+            $('#rpc-info').html(_callURI + '<p>(' + argsString + ')</p>');
+            // stringify result and highlight it
+            $('#json-rpc-data').html(jsonHighlight(JSON.stringify(result, null, 2)));
+            console.log(result);
+
+            // /@foerderer
         },
         function (error) {
 			$('#callRPC').modal('hide');
@@ -65,6 +85,14 @@ function newRpc(details) {
     html += '</tr>';
 
     $('#rpc-list').append(html);
+    
+    // @foerderer
+
+    // sort table using "stupidtable"
+    let table = $('#rpc-list').parent('table').stupidtable();
+    $('#rpc-col-uri').stupidsort('asc');
+
+    // /@foerderer
 }
 
 function getAllRpc() {
