@@ -90,6 +90,7 @@ function newRpc(details) {
 
     // sort table using "stupidtable"
     let table = $('#rpc-list').parent('table').stupidtable();
+    $('#rpc-col-uri').stupidsort('desc'); // force sorting by changing order first
     $('#rpc-col-uri').stupidsort('asc');
 
     // /@foerderer

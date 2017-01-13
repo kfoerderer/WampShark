@@ -159,6 +159,7 @@ function newTopic(details) {
 
     // sort table using "stupidtable"
     let table = $('#topic-list').parent('table').stupidtable();
+    $('#topic-col-uri').stupidsort('desc'); // force sorting by changing order first
     $('#topic-col-uri').stupidsort('asc');
 
     // /@foerderer
